@@ -22,6 +22,12 @@
                 <link rel="stylesheet" href="/css/app.css">
                 <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon">
                 <link rel="stylesheet" href="/css/myStyle.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                <script>
+                    function loadImg() {
+                        $('#frame').attr('src', URL.createObjectURL(event.target.files[0]));
+                    }
+                </script>
 
 
                 <title>Create User</title>
@@ -35,11 +41,18 @@
                                 <%@ include file="../layout/sidebar.jsp" %>
 
                             </div>
-                            <div class="col-lg-8 mt-5
-                            ">
+                            <div class="col-lg-8 mt-5">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mt-3">
+                                        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                        <li class="breadcrumb-item active"><a href="/admin/user">User</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Create user</li>
+                                    </ol>
+                                </nav>
                                 <h4>Create User</h4>
                                 <br>
-                                <form:form method="post" action="/admin/user/create" modelAttribute="newUser">
+                                <form:form method="post" action="/admin/user/create" modelAttribute="newUser"
+                                    enctype="multipart/form-data">
                                     <div class="row justify-content-center">
                                         <div class="mb-3 col-lg-4">
                                             <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -79,6 +92,11 @@
                                                 <form:option value="USER">User</form:option>
                                             </form:select>
 
+                                        </div>
+                                        <div class="mb-3 col-lg-12">
+                                            <input name="avatarFile" type="file" accept="image/"
+                                                onchange="loadImg()"><br />
+                                            <img id="frame" width="100px" height="100px" />
                                         </div>
 
 

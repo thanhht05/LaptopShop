@@ -1,7 +1,5 @@
 package javaspring.Laptopshop.domain;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +19,7 @@ public class User {
     private String address;
     private String phone;
     private String password;
+    private String avatar;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -80,6 +79,14 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }

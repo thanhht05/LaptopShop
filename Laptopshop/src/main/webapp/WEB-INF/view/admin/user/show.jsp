@@ -29,6 +29,12 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="container">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mt-3">
+                                        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">User</li>
+                                    </ol>
+                                </nav>
                                 <div class="mt-5" style="text-align: right; margin-bottom: 10px;">
                                     <button class="btn btn-success">
                                         <a style="color: inherit;" href="/admin/user/create">Create new user</a>
@@ -53,7 +59,10 @@
                                                 <td>${user.phone}</td>
                                                 <td>
                                                     <button class=" btn btn-primary">Update </button>
-                                                    <button class=" btn btn-secondary">Detail </button>
+                                                    <button class=" btn btn-secondary">
+                                                        <a style="color: inherit;"
+                                                            href="/admin/user/${user.id}">Detail</a>
+                                                    </button>
                                                     <button class=" btn btn-danger">Delete </button>
                                                 </td>
                                             </tr>
