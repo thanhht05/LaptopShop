@@ -58,12 +58,18 @@
                                                 <td>${user.address}</td>
                                                 <td>${user.phone}</td>
                                                 <td>
-                                                    <button class=" btn btn-primary">Update </button>
+                                                    <button class=" btn btn-primary">
+                                                        <a style="color: inherit;"
+                                                            href="/admin/user/update/${user.id}">Update</a>
+                                                    </button>
                                                     <button class=" btn btn-secondary">
                                                         <a style="color: inherit;"
                                                             href="/admin/user/${user.id}">Detail</a>
                                                     </button>
-                                                    <button class=" btn btn-danger">Delete </button>
+                                                    <button class=" btn btn-danger">
+                                                        <a style="color: inherit;   "
+                                                            href="/admin/user/delete/${user.id}">Delete</a>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
