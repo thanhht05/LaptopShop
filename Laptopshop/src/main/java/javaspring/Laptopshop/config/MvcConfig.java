@@ -36,6 +36,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/css/pages/**").addResourceLocations("/resources/css/pages/");
         registry.addResourceHandler("/css/widgets/**").addResourceLocations("/resources/css/widgets/");
 
+        // webfont
+        registry.addResourceHandler("/webfonts/**").addResourceLocations("/resources/webfonts/");
+
         // js
 
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
