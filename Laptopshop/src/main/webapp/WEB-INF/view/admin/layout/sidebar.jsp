@@ -30,7 +30,7 @@
                 <li class="sidebar-item  has-sub">
                     <div class='sidebar-link' style="gap: 10px;">
                         <i class="bi bi-grid-1x2-fill"></i>
-                        <a style="display: inline-block; width: 100%; height: 100%;" href="">Products</a>
+                        <a style="display: inline-block; width: 100%; height: 100%;" href="/admin/product">Products</a>
                     </div>
 
                 </li>

@@ -44,9 +44,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
 
         // Image resources
-        registry.addResourceHandler("/images/bg/**").addResourceLocations("/resources/images/bg/");
-        registry.addResourceHandler("/images/faces/**").addResourceLocations("/resources/images/faces/");
-        registry.addResourceHandler("/images/logo/**").addResourceLocations("/resources/images/logo/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
 
         // vendor
         registry.addResourceHandler("/vendors/apexcharts/**").addResourceLocations("/resources/vendors/apexcharts/");
