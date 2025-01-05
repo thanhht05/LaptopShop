@@ -53,14 +53,29 @@
                                 <br>
                                 <form:form method="post" action="/admin/product/create" enctype="multipart/form-data"
                                     modelAttribute="product">
+                                    <c:set var="errorPrice">
+                                        <form:errors path="price" cssClass="invalid-feedback" />
+                                    </c:set>
+                                    <c:set var="errorName">
+                                        <form:errors path="name" cssClass="invalid-feedback" />
+                                    </c:set>
+                                    <c:set var="errorQuantity">
+                                        <form:errors path="quantity" cssClass="invalid-feedback" />
+                                    </c:set>
                                     <div class="row justify-content-center">
                                         <div class="mb-3 col-lg-4">
                                             <label for="name" class="form-label">Name</label>
-                                            <form:input path="name" type="text" class="form-control" id="name" />
+                                            <form:input path="name" type="text"
+                                                class="form-control  ${not empty errorName ? 'is-invalid': ''}"
+                                                id="name" />
+                                            ${errorName}
                                         </div>
                                         <div class=" mb-3 col-lg-4">
                                             <label for="price" class="form-label">Price</label>
-                                            <form:input path="price" type="number" class="form-control" id="price" />
+                                            <form:input path="price" type="number"
+                                                class="form-control ${not empty errorPrice ? 'is-invalid': ''}"
+                                                id="price" />
+                                            ${errorPrice}
                                         </div>
 
                                     </div>
@@ -80,8 +95,10 @@
                                     <div class="row justify-content-center">
                                         <div class="mb-3 col-lg-4">
                                             <label for="quantity" class="form-label">Quantity</label>
-                                            <form:input path="quantity" type="number" class="form-control"
+                                            <form:input path="quantity" type="number"
+                                                class="form-control ${not empty errorQuantity ? 'is-invalid': ''}"
                                                 id="quantity" />
+                                            ${errorQuantity}
                                         </div>
                                         <div class="mb-3 col-lg-4">
                                             <label for="address" class="form-label">Select target</label>

@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.validation.Valid;
 import javaspring.Laptopshop.domain.User;
 import javaspring.Laptopshop.service.UploadService;
 import javaspring.Laptopshop.service.UserService;
@@ -36,8 +39,17 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/create")
-    public String handleCreateUser(Model model, @ModelAttribute User newUser,
+    public String handleCreateUser(Model model, @ModelAttribute("newUser") @Valid User newUser,
+            BindingResult newBindingResult,
             @RequestParam("avatarFile") MultipartFile file) throws IOException {
+        List<FieldError> errors = newBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+        if (newBindingResult.hasErrors()) {
+            // model.addAttribute("newUser", newUser);
+            return "/admin/user/create";
+        }
         String roleName = newUser.getRole().getName();
         String avatar = this.uploadService.handleUpLoadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
@@ -74,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String handleUpdateUser(@ModelAttribute User user) {
+    public String handleUpdateUser(@ModelAttribute("user") User user) {
         User userUpdate = this.userService.handleGetUserById(user.getId());
         if (userUpdate != null) {
             userUpdate.setFullName(user.getFullName());

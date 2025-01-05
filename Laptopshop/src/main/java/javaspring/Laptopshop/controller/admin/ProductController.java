@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,9 @@ import javaspring.Laptopshop.service.UploadService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
@@ -42,8 +46,12 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product/create")
-    public String handleCreateProduct(@ModelAttribute Product product,
+    public String handleCreateProduct(@ModelAttribute("product") @Valid Product product,
+            BindingResult bindingResult,
             @RequestParam("avatarProduct") MultipartFile file) throws IOException {
+        if (bindingResult.hasErrors()) {
+            return "/admin/product/create";
+        }
 
         String img = this.uploadService.handleUpLoadFile(file, "product");
         product.setImage(img);
