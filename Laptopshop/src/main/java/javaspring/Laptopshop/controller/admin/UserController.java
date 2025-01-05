@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javaspring.Laptopshop.domain.User;
 import javaspring.Laptopshop.service.UploadService;
 import javaspring.Laptopshop.service.UserService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class UserController {
