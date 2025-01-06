@@ -19,15 +19,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
-    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @Email(message = "Invalid email", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
     @NotNull
-    @Size(min = 2, message = "Full name phải có tối thiểu 2 kí tự")
+    @Size(min = 2, message = "Full name must have at least 2 characters")
     private String fullName;
     private String address;
     private String phone;
     @NotNull
-    @Size(min = 6, message = "Password phải có tối thiểu 6 kí tự")
+    @Size(min = 6, message = "Password must have a minimum of 6 characters")
     private String password;
     private String avatar;
 
