@@ -10,7 +10,7 @@
                 <meta name="description" content="">
                 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
                 <meta name="generator" content="Hugo 0.84.0">
-                <title>Signin Template · Bootstrap v5.0</title>
+                <title>Signin</title>
 
                 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -68,7 +68,7 @@
             <body class="">
 
                 <main class="container mt-5">
-                    <form:form method="post" action="/register">
+                    <form:form method="post" action="/login" modelAttribute="loginUser">
                         <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
                         <div class="row justify-content-center">
                             <div class="col-lg-7">

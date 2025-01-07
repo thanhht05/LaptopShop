@@ -75,6 +75,12 @@
             <c:set var="errorEmail">
               <form:errors path="email" cssClass="invalid-feedback" />
             </c:set>
+            <c:set var="errorPassword">
+              <form:errors path="password" cssClass="invalid-feedback" />
+            </c:set>
+            <c:set var="errorConfirmPassword">
+              <form:errors path="confirmPassword" cssClass="invalid-feedback" />
+            </c:set>
             <div class="row justify-content-center">
               <div class="col-lg-7">
                 <div class="row mb-3">
@@ -104,16 +110,20 @@
                 <div class="row mb-3">
                   <div class="col-lg-6">
                     <div class="form-floating">
-                      <form:input path="password" type="password" class="form-control" id="password"
+                      <form:input path="password" type="password"
+                        class="form-control ${not empty errorPassword ? 'is-invalid': ''}" id="password"
                         placeholder="Enter password" />
                       <label for="password">Password</label>
+                      ${errorPassword}
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-floating">
-                      <form:input path="confirmPassword" type="password" class="form-control" id="confirm"
+                      <form:input path="confirmPassword" type="password"
+                        class="form-control ${not empty errorConfirmPassword ? 'is-invalid': ''}" id="confirm"
                         placeholder="Enter confirm password" />
                       <label for="confirm">Confirm password</label>
+                      ${errorConfirmPassword}
                     </div>
                   </div>
                 </div>

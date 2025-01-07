@@ -10,13 +10,15 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = RegisterValidator.class)
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Constraint(validatedBy = StrongPasswordValidator.class)
+@Target({ ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RegisterChecked {
-    String message() default "Invalid";
+public @interface StrongPassword {
+
+    String message() default "Password must be at least 6 characters including uppercase and lowercase letters, numbers and special characters.";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
 }
