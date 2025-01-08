@@ -1,5 +1,6 @@
 package javaspring.Laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Product {
     @NotNull
     @Size(min = 2, message = "Name must have at least 2 characters")
     private String name;
+    @Column(columnDefinition = "MEDIUMTEXT ")
     private String detailDesc;
     private String shortDesc;
     private String factory;

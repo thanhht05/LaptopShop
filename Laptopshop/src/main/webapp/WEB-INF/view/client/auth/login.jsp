@@ -10,7 +10,7 @@
                 <meta name="description" content="">
                 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
                 <meta name="generator" content="Hugo 0.84.0">
-                <title>Signin</title>
+                <title>Sign in</title>
 
                 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -68,18 +68,19 @@
             <body class="">
 
                 <main class="container mt-5">
-                    <form:form method="post" action="/login" modelAttribute="loginUser">
+                    <form method="post" action="/login">
                         <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                    <input type="email" name="username" class="form-control" id="email"
+                                        placeholder="Enter email">
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-lg-6">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" name="password" class="form-control" id="password"
                                                 placeholder="Enter password">
                                             <label for="password">Password</label>
                                         </div>
@@ -93,12 +94,22 @@
                                     </div>
                                 </div>
 
+                                <div>
+                                    <c:if test="${param.error != null}">
+                                        <div class="my-2" style="color: red;">Invalid email or
+                                            password.</div>
+                                    </c:if>
+                                </div>
                                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
 
                             </div>
+                            <div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </div>
 
                         </div>
-                    </form:form>
+                    </form>
+
                 </main>
 
 

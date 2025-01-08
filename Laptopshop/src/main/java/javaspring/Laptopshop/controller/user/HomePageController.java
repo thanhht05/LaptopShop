@@ -18,6 +18,7 @@ import javaspring.Laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class HomePageController {
@@ -63,6 +64,11 @@ public class HomePageController {
     public String getLoginPage(Model model) {
         model.addAttribute("loginUser", new RegisterDTO());
         return "client/auth/login";
+    }
+
+    @GetMapping("/access-deny")
+    public String getDenyPage() {
+        return "client/auth/deny";
     }
 
 }
