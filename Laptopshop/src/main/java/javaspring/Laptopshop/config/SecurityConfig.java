@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpMessageConverterAuthenticationSuccessHandler.AuthenticationSuccess;
+import org.springframework.session.security.web.authentication.SpringSessionRememberMeServices;
 
 import jakarta.servlet.DispatcherType;
 import javaspring.Laptopshop.service.CustomUserDetailsService;
@@ -47,6 +48,13 @@ public class SecurityConfig {
     }
 
     @Bean
+    public SpringSessionRememberMeServices rememberMeServices() {
+        SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
+        rememberMeServices.setAlwaysRemember(true);
+        return rememberMeServices;
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> {
@@ -64,7 +72,18 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .failureUrl("/login?error")
                         .successHandler(customAuthenticationSuccessHandler()))
-                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
+                .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"))
+                .logout(logout -> logout
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true))
+                // config session
+                .sessionManagement((sessionManagement) -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                        .invalidSessionUrl("/logout?expired")
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(false))
+                .rememberMe(remember -> remember
+                        .rememberMeServices(rememberMeServices()));
 
         return http.build();
     }
