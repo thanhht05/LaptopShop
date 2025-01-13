@@ -42,7 +42,9 @@
                                 <a class="nav-icon position-relative text-decoration-none" href="#">
                                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                                     <span
-                                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                                        ${sessionScope.sum}
+                                    </span>
                                 </a>
                                 <div class="dropdown">
                                     <button class="btn btn-success dropdown-toggle" type="button"
@@ -52,17 +54,24 @@
                                             <i class="fa fa-fw fa-user text-white"></i>
                                         </a>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul style="left: -42px !important;" class="dropdown-menu">
+                                        <li class="dropdown-item">
+                                            <div>
+                                                <img style="width: 70%; margin: auto; display: flex;"
+                                                    src="/images/avatar/${sessionScope.avatar}" alt="">
+                                            </div>
+                                        </li>
                                         <li><a class="dropdown-item" href="#">Cart</a></li>
                                         <li><a class="dropdown-item" href="#">Purchase history</a></li>
                                         <li><a class="dropdown-item" href="#">Account management</a></li>
-                                        <li>
+                                        <hr>
+                                        <li class="">
                                             <form method="post" action="/logout">
                                                 <div>
                                                     <input type="hidden" name="${_csrf.parameterName}"
                                                         value="${_csrf.token}" />
                                                 </div>
-                                                <button class="dropdown-item">Logout</button>
+                                                <button style="font-weight: 300;" class="dropdown-item">Logout</button>
                                             </form>
 
                                         </li>

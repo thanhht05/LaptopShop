@@ -17,7 +17,8 @@ public class OrderDetail {
     private int quantity;
     private double price;
 
-    //một đơn hàng có thể chứa nhiều sản phẩm, nhưng mỗi đơn hàng chỉ chứa một sản phẩm duy nhất.
+    // một đơn hàng có thể chứa nhiều sản phẩm, nhưng mỗi đơn hàng chỉ chứa một sản
+    // phẩm duy nhất.
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -44,6 +45,14 @@ public class OrderDetail {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

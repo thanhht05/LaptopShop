@@ -89,39 +89,45 @@ https://templatemo.com/tm-559-zay-shop
                                                     <p>${product.shortDesc}</p>
                                                 </ul>
 
-                                                <form action="" method="GET">
-                                                    <input type="hidden" name="product-title" value="Activewear">
-                                                    <div class="row">
-                                                        <div class="col-auto">
-                                                            <ul class="list-inline pb-3">
-                                                                <li class="list-inline-item text-right">
-                                                                    Quantity
-                                                                    <input type="hidden" name="product-quanity"
-                                                                        id="product-quanity" value="1">
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="btn btn-success" id="btn-minus">-</span>
-                                                                </li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="badge bg-secondary"
-                                                                        id="var-value">1</span></li>
-                                                                <li class="list-inline-item"><span
-                                                                        class="btn btn-success" id="btn-plus">+</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                <input type="hidden" name="product-title" value="Activewear">
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <ul class="list-inline pb-3">
+                                                            <li class="list-inline-item text-right">
+                                                                Quantity
+                                                                <input type="hidden" name="product-quanity"
+                                                                    id="product-quanity" value="1">
+                                                            </li>
+                                                            <li class="list-inline-item"><span class="btn btn-success"
+                                                                    id="btn-minus">-</span>
+                                                            </li>
+                                                            <li class="list-inline-item"><span
+                                                                    class="badge bg-secondary" id="var-value">1</span>
+                                                            </li>
+                                                            <li class="list-inline-item"><span class="btn btn-success"
+                                                                    id="btn-plus">+</span>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                    <div class="row pb-3">
-                                                        <div class="col d-grid">
-                                                            <button type="submit" class="btn btn-success btn-lg"
-                                                                name="submit" value="buy">Buy</button>
-                                                        </div>
-                                                        <div class="col d-grid">
-                                                            <button type="submit" class="btn btn-success btn-lg"
-                                                                name="submit" value="addtocard">Add To Cart</button>
-                                                        </div>
+                                                </div>
+                                                <div class="row pb-3">
+                                                    <div class="col d-grid">
+                                                        <button type="submit" class="btn btn-success btn-lg"
+                                                            name="submit" value="buy">Buy</button>
                                                     </div>
-                                                </form>
+                                                    <div class="col d-grid">
+                                                        <form method="post" action="/add/product/${product.id}">
+
+                                                            <div>
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}" />
+                                                            </div>
+                                                            <button style="width: 100%;" type="submit"
+                                                                class="btn btn-success btn-lg" name="submit">Add To
+                                                                Cart</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>

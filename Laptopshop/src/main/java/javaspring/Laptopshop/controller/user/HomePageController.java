@@ -15,10 +15,8 @@ import javaspring.Laptopshop.domain.User;
 import javaspring.Laptopshop.domain.dto.RegisterDTO;
 import javaspring.Laptopshop.service.ProductService;
 import javaspring.Laptopshop.service.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class HomePageController {

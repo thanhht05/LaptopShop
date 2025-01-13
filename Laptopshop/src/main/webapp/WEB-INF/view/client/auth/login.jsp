@@ -95,7 +95,8 @@
                                     </c:if>
                                 </div>
                                 <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
-
+                                <a href="/register">Don't have an account yet? Go to
+                                    register</a>
                             </div>
 
 

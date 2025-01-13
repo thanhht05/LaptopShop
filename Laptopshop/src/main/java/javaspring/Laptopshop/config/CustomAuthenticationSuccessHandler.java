@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -16,15 +17,20 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import javaspring.Laptopshop.domain.User;
+import javaspring.Laptopshop.service.UserService;
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+    @Autowired
+    private UserService userService;
+
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         handle(request, response, authentication);
-        clearAuthenticationAttributes(request);
+        clearAuthenticationAttributes(request, authentication);
     }
 
     protected void handle(
@@ -54,12 +60,22 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         throw new IllegalStateException();
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+    protected void clearAuthenticationAttributes(HttpServletRequest request, Authentication authentication) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+
+        String email = authentication.getName();
+        User user = this.userService.getUserByEmail(email);
+        if (user != null) {
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("avatar", user.getAvatar());
+
+            int sum = user.getCart() == null ? 0 : user.getCart().getSum();
+            session.setAttribute("sum", sum);
+        }
     }
 
 }

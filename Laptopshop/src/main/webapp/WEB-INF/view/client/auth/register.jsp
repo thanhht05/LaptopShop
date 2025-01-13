@@ -129,6 +129,7 @@
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                <a href="/login">You already have an account. Go to login</a>
 
               </div>
 
